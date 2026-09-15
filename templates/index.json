@@ -1,14 +1,25 @@
 {
   "sections": {
     "hero": {
-      "type": "dcwr-hero"
+      "type": "dcwr-hero",
+      "settings": {
+        "eyebrow": "Dress Clean Walk Ready",
+        "heading": "DressCleanWalk Ready",
+        "text": "Heavyweight cotton T-shirts, designed in the Netherlands.",
+        "button_label": "Shop T-shirts",
+        "button_link": "/collections/all"
+      }
     },
     "grid": {
-      "type": "dcwr-product-grid"
+      "type": "dcwr-product-grid",
+      "settings": {
+        "eyebrow": "The collection",
+        "heading": "T-shirts",
+        "products_to_show": 6,
+        "link_label": "View all",
+        "link_url": "/collections/all"
+      }
     }
   },
-  "order": [
-    "hero",
-    "grid"
-  ]
+  "order": ["hero", "grid"]
 }
