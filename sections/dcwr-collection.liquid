@@ -1,0 +1,50 @@
+<section class="dcwr-section">
+  <div class="dcwr-container">
+    <div class="dcwr-section__head">
+      <div>
+        <p class="dcwr-label dcwr-section__eyebrow">The collection</p>
+        <h1 class="dcwr-section__title">{{ collection.title }}</h1>
+      </div>
+      {% if collection.description != blank %}
+        <p class="dcwr-section__intro">{{ collection.description | strip_html | truncate: 180 }}</p>
+      {% endif %}
+    </div>
+
+    <div class="dcwr-grid">
+      {%- for product in collection.products -%}
+        <article class="dcwr-card">
+          <a class="dcwr-card__media" href="{{ product.url }}">
+            {% if product.featured_image %}
+              {{ product.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'dcwr-card__main', alt: product.title }}
+              {% if product.images[1] %}
+                {{ product.images[1] | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'dcwr-card__hover', alt: product.title }}
+              {% endif %}
+            {% else %}
+              <span class="dcwr-card__placeholder dcwr-label">Photo coming soon</span>
+            {% endif %}
+          </a>
+          <div class="dcwr-card__body">
+            <div style="min-width:0;">
+              <h2 class="dcwr-card__title"><a class="dcwr-rule" href="{{ product.url }}">{{ product.title }}</a></h2>
+              <p class="dcwr-card__desc">{{ product.description | strip_html | truncate: 130 }}</p>
+            </div>
+            <p class="dcwr-card__price">{{ product.price | money }}</p>
+          </div>
+          {% if product.available %}
+            <a class="dcwr-button dcwr-button--outline dcwr-card__cta" href="{{ product.url }}">Choose size</a>
+          {% else %}
+            <span class="dcwr-button dcwr-button--disabled dcwr-card__cta">Sold out</span>
+          {% endif %}
+        </article>
+      {%- else -%}
+        <p class="dcwr-muted">No products found</p>
+      {%- endfor -%}
+    </div>
+
+    {% if paginate.pages > 1 %}{{ paginate | default_pagination }}{% endif %}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "DCWR collection" }
+{% endschema %}
