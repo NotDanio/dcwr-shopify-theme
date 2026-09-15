@@ -1,6 +1,7 @@
 {
   "general": {
-    "search": { "search": "Search" },
-    "404": { "title": "Page not found" }
+    "accessability": {
+      "skip_to_content": "Skip to content"
+    }
   }
 }
