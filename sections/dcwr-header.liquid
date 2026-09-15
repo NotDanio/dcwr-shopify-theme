@@ -1,20 +1,87 @@
-<header class="dcwr-header">
+{%- liquid
+  assign over_hero = false
+  if template.name == 'index' and section.settings.transparent_on_home
+    assign over_hero = true
+  endif
+-%}
+
+<header class="dcwr-header {% if over_hero %}dcwr-header--over{% else %}dcwr-header--solid{% endif %}" data-dcwr-header data-over-hero="{{ over_hero }}">
   <div class="dcwr-container dcwr-header__inner">
-    <a class="dcwr-header__logo" href="{{ routes.root_url }}">{{ shop.name }}</a>
-    <nav class="dcwr-header__nav dcwr-label">
-      {%- for link in linklists[section.settings.menu].links -%}
-        <a href="{{ link.url }}">{{ link.title }}</a>
-      {%- endfor -%}
-      <a href="{{ routes.cart_url }}">Cart ({{ cart.item_count }})</a>
-    </nav>
+    <div style="display:flex;align-items:center;gap:1.75rem;">
+      <button type="button" class="dcwr-header__burger dcwr-label" aria-label="Open menu" aria-expanded="false" data-dcwr-burger>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <nav class="dcwr-header__nav">
+        {%- for link in linklists[section.settings.menu].links -%}
+          <a href="{{ link.url }}" class="dcwr-label dcwr-rule">{{ link.title }}</a>
+        {%- endfor -%}
+      </nav>
+    </div>
+
+    <a href="{{ routes.root_url }}" class="dcwr-header__logo" aria-label="{{ shop.name }} home">
+      <img class="dcwr-logo-green" src="{{ 'dcwr-wordmark-green.png' | asset_url }}" alt="{{ shop.name }}" width="437" height="65" {% if over_hero %}hidden{% endif %}>
+      <img class="dcwr-logo-white" src="{{ 'dcwr-wordmark-white.png' | asset_url }}" alt="{{ shop.name }}" width="437" height="65" {% unless over_hero %}hidden{% endunless %}>
+    </a>
+
+    <div class="dcwr-header__actions">
+      <a href="{{ routes.search_url }}" class="dcwr-label" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </a>
+      <a href="{{ routes.cart_url }}" class="dcwr-label" aria-label="Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span style="margin-left:.4rem;">{{ cart.item_count }}</span>
+      </a>
+    </div>
   </div>
+
+  <nav class="dcwr-header__mobile" data-dcwr-mobile-nav>
+    {%- for link in linklists[section.settings.menu].links -%}
+      <a href="{{ link.url }}" class="dcwr-label">{{ link.title }}</a>
+    {%- endfor -%}
+  </nav>
 </header>
+
+<script>
+  (function () {
+    var header = document.querySelector('[data-dcwr-header]');
+    if (!header) return;
+    var burger = header.querySelector('[data-dcwr-burger]');
+    var nav = header.querySelector('[data-dcwr-mobile-nav]');
+    var overHero = header.getAttribute('data-over-hero') === 'true';
+    var green = header.querySelector('.dcwr-logo-green');
+    var white = header.querySelector('.dcwr-logo-white');
+
+    function setSolid(solid) {
+      header.classList.toggle('dcwr-header--solid', solid);
+      header.classList.toggle('dcwr-header--over', !solid);
+      if (green) green.hidden = !solid;
+      if (white) white.hidden = solid;
+    }
+
+    if (burger && nav) {
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (overHero) setSolid(open || window.scrollY > 40);
+      });
+    }
+
+    if (overHero) {
+      var onScroll = function () {
+        setSolid(window.scrollY > 40 || (nav && nav.classList.contains('is-open')));
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+  })();
+</script>
 
 {% schema %}
 {
   "name": "DCWR header",
   "settings": [
-    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "checkbox", "id": "transparent_on_home", "label": "Transparent over the home page hero", "default": true }
   ]
 }
 {% endschema %}
