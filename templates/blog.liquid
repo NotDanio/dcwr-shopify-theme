@@ -1,4 +1,11 @@
-<div class="dcwr-container" style="padding:4rem 1.25rem;">
-  <h1>{{ blog.title }}</h1>
-  {% for article in blog.articles %}<p><a href="{{ article.url }}">{{ article.title }}</a></p>{% endfor %}
+<div class="dcwr-page">
+  <div class="dcwr-container">
+    <h1 class="dcwr-page__title">{{ blog.title }}</h1>
+    {%- for article in blog.articles -%}
+      <article style="border-top:1px solid var(--dcwr-border);padding:1.5rem 0;">
+        <h2 style="font-family:var(--dcwr-font-brand);font-size:1.75rem;"><a class="dcwr-rule" href="{{ article.url }}">{{ article.title }}</a></h2>
+        <p class="dcwr-muted" style="font-size:.875rem;">{{ article.excerpt_or_content | strip_html | truncate: 180 }}</p>
+      </article>
+    {%- endfor -%}
+  </div>
 </div>
