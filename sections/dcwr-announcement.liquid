@@ -1,10 +1,14 @@
-<div class="dcwr-announcement dcwr-label">{{ section.settings.text }}</div>
+<div class="dcwr-announcement">
+  <div class="dcwr-container dcwr-announcement__inner">
+    <p class="dcwr-label" style="margin:0;">{{ section.settings.text }}</p>
+  </div>
+</div>
 
 {% schema %}
 {
   "name": "DCWR announcement",
   "settings": [
-    { "type": "text", "id": "text", "label": "Text", "default": "Free shipping on orders over 50 EUR" }
+    { "type": "text", "id": "text", "label": "Text", "default": "Free shipping over €50 — shipped within 24 hours" }
   ]
 }
 {% endschema %}
