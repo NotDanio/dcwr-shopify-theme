@@ -1,0 +1,7 @@
+{
+  "sections": {
+    "main": { "type": "dcwr-collection" },
+    "marquee": { "type": "dcwr-marquee" }
+  },
+  "order": ["main", "marquee"]
+}
