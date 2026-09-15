@@ -1,10 +1,7 @@
 {
   "sections": {
-    "main": {
-      "type": "main-product"
-    }
+    "main": { "type": "dcwr-main-product" },
+    "marquee": { "type": "dcwr-marquee" }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main", "marquee"]
 }
