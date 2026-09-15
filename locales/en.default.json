@@ -1,7 +1,9 @@
 {
   "general": {
-    "accessability": {
-      "skip_to_content": "Skip to content"
-    }
+    "search": { "title": "Search", "placeholder": "Search T-shirts" },
+    "cart": { "title": "Cart" }
+  },
+  "products": {
+    "product": { "add_to_cart": "Add to cart", "sold_out": "Sold out" }
   }
 }
