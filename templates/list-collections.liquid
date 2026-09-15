@@ -1,4 +1,19 @@
-<div class="dcwr-container" style="padding:4rem 1.25rem;">
-  <h1>Collections</h1>
-  {% for collection in collections %}<p><a href="{{ collection.url }}">{{ collection.title }}</a></p>{% endfor %}
+<div class="dcwr-page">
+  <div class="dcwr-container">
+    <h1 class="dcwr-page__title">Collections</h1>
+    <div class="dcwr-grid">
+      {%- for collection in collections -%}
+        <article class="dcwr-card">
+          <a class="dcwr-card__media" href="{{ collection.url }}">
+            {% if collection.featured_image %}
+              {{ collection.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'dcwr-card__main', alt: collection.title }}
+            {% endif %}
+          </a>
+          <div class="dcwr-card__body">
+            <h2 class="dcwr-card__title"><a class="dcwr-rule" href="{{ collection.url }}">{{ collection.title }}</a></h2>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
 </div>
