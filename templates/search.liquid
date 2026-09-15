@@ -1,8 +1,4 @@
-<section class="dcwr-grid-section">
-  <div class="dcwr-container">
-    <h1 class="dcwr-grid-section__title">Search</h1>
-    {% for item in search.results %}
-      <p><a href="{{ item.url }}">{{ item.title }}</a></p>
-    {% endfor %}
-  </div>
-</section>
+<div class="dcwr-container" style="padding:4rem 1.25rem;">
+  <h1>Search</h1>
+  {% for item in search.results %}<p><a href="{{ item.url }}">{{ item.title }}</a></p>{% endfor %}
+</div>
