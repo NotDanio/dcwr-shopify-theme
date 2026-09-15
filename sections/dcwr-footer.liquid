@@ -1,0 +1,34 @@
+<footer class="dcwr-footer">
+  <div class="dcwr-container">
+    <div class="dcwr-footer__grid">
+      <div>
+        <p class="dcwr-footer__brand">{{ shop.name }}</p>
+        <p>{{ section.settings.text }}</p>
+      </div>
+      <div>
+        <p class="dcwr-label">Shop</p>
+        {%- for link in linklists[section.settings.menu].links -%}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {%- endfor -%}
+      </div>
+      <div>
+        <p class="dcwr-label">Contact</p>
+        <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+        <a href="{{ section.settings.instagram }}">Instagram</a>
+      </div>
+    </div>
+    <div class="dcwr-footer__bottom">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "DCWR footer",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Heavyweight cotton T-shirts, designed in the Netherlands." },
+    { "type": "text", "id": "email", "label": "Email", "default": "info@dcwr-shop.com" },
+    { "type": "url", "id": "instagram", "label": "Instagram URL", "default": "https://instagram.com/dresscleanwalkready" }
+  ]
+}
+{% endschema %}
