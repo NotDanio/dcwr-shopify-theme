@@ -1,34 +1,59 @@
 <footer class="dcwr-footer">
-  <div class="dcwr-container">
-    <div class="dcwr-footer__grid">
-      <div>
-        <p class="dcwr-footer__brand">{{ shop.name }}</p>
-        <p>{{ section.settings.text }}</p>
+  <div class="dcwr-container dcwr-footer__grid">
+    <div>
+      <div class="dcwr-footer__logo">
+        <img src="{{ 'dcwr-wordmark-green.png' | asset_url }}" alt="{{ shop.name }}" width="437" height="65" loading="lazy">
       </div>
-      <div>
-        <p class="dcwr-label">Shop</p>
-        {%- for link in linklists[section.settings.menu].links -%}
-          <a href="{{ link.url }}">{{ link.title }}</a>
-        {%- endfor -%}
-      </div>
-      <div>
-        <p class="dcwr-label">Contact</p>
-        <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
-        <a href="{{ section.settings.instagram }}">Instagram</a>
-      </div>
+      <p class="dcwr-footer__blurb">{{ section.settings.text }}</p>
     </div>
-    <div class="dcwr-footer__bottom">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</div>
+
+    {%- for block in section.blocks -%}
+      <div class="dcwr-footer__col" {{ block.shopify_attributes }}>
+        <h3>{{ block.settings.title }}</h3>
+        <ul>
+          {%- for link in linklists[block.settings.menu].links -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endfor -%}
+
+    <div class="dcwr-footer__col">
+      <h3>Contact</h3>
+      <ul>
+        <li><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></li>
+        <li><a href="{{ section.settings.instagram }}">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="dcwr-footer__bottom">
+    <div class="dcwr-container dcwr-footer__bottom-inner">
+      <p style="margin:0;">&copy; {{ 'now' | date: '%Y' }} DCWR. All rights reserved.</p>
+      <p class="dcwr-footer__sign" style="margin:0;">Dress clean · Walk ready</p>
+    </div>
   </div>
 </footer>
 
 {% schema %}
 {
   "name": "DCWR footer",
+  "max_blocks": 3,
   "settings": [
-    { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" },
-    { "type": "textarea", "id": "text", "label": "Text", "default": "Heavyweight cotton T-shirts, designed in the Netherlands." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Dress Clean Walk Ready — clean essentials in heavyweight cotton. Designed in the Netherlands." },
     { "type": "text", "id": "email", "label": "Email", "default": "info@dcwr-shop.com" },
     { "type": "url", "id": "instagram", "label": "Instagram URL", "default": "https://instagram.com/dresscleanwalkready" }
-  ]
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Link column",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Shop" },
+        { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "DCWR footer" }]
 }
 {% endschema %}
