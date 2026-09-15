@@ -1,16 +1,13 @@
-<section class="dcwr-grid-section">
-  <div class="dcwr-container">
-    <h1 class="dcwr-grid-section__title">Cart</h1>
-    {% if cart.item_count == 0 %}
-      <p>Your cart is empty.</p>
-    {% else %}
+<div class="dcwr-container" style="padding:4rem 1.25rem;">
+  <h1>Cart</h1>
+  {% if cart.item_count == 0 %}
+    <p>Your cart is empty.</p>
+  {% else %}
+    <form action="/cart" method="post">
       {% for item in cart.items %}
-        <p>{{ item.quantity }} × {{ item.product.title }} — {{ item.final_line_price | money }}</p>
+        <p>{{ item.product_title }} — {{ item.final_line_price | money }}</p>
       {% endfor %}
-      <p>Total: {{ cart.total_price | money }}</p>
-      <form action="{{ routes.cart_url }}" method="post">
-        <button class="dcwr-button" type="submit" name="checkout">Checkout</button>
-      </form>
-    {% endif %}
-  </div>
-</section>
+      <button class="dcwr-button" type="submit" name="checkout">Checkout</button>
+    </form>
+  {% endif %}
+</div>
