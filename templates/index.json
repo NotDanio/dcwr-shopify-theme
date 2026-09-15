@@ -1,8 +1,18 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "dcwr-hero",
       "settings": {
+        "image_alt": "Model wearing a DCWR T-shirt",
         "eyebrow": "Dress Clean Walk Ready",
         "heading": "DressCleanWalk Ready",
         "text": "Heavyweight cotton T-shirts, designed in the Netherlands.",
@@ -13,13 +23,17 @@
     "grid": {
       "type": "dcwr-product-grid",
       "settings": {
+        "collection": "frontpage",
+        "products_to_show": 4,
         "eyebrow": "The collection",
         "heading": "T-shirts",
-        "products_to_show": 6,
         "link_label": "View all",
-        "link_url": "/collections/all"
+        "link_url": "shopify://collections/home-page"
       }
     }
   },
-  "order": ["hero", "grid"]
+  "order": [
+    "hero",
+    "grid"
+  ]
 }
