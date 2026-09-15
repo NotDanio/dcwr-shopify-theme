@@ -1,39 +1,29 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "hero": {
       "type": "dcwr-hero",
       "settings": {
-        "image_alt": "Model wearing a DCWR T-shirt",
-        "eyebrow": "Dress Clean Walk Ready",
         "heading": "DressCleanWalk Ready",
-        "text": "Heavyweight cotton T-shirts, designed in the Netherlands.",
-        "button_label": "Shop T-shirts",
-        "button_link": "/collections/all"
+        "text": "Timeless essentials in heavyweight cotton. Quiet colours, sharp fit, made to wear every day.",
+        "button_label": "Shop the collection",
+        "image_alt": "Model wearing a DCWR tee"
+      }
+    },
+    "marquee": {
+      "type": "dcwr-marquee",
+      "settings": {
+        "items": "Heavyweight cotton, Designed in the Netherlands, Free shipping over €50, 14-day returns, Limited drops"
       }
     },
     "grid": {
       "type": "dcwr-product-grid",
       "settings": {
-        "collection": "frontpage",
-        "products_to_show": 4,
         "eyebrow": "The collection",
-        "heading": "T-shirts",
-        "link_label": "View all",
-        "link_url": "shopify://collections/home-page"
+        "heading": "New in the shop",
+        "products_to_show": 6,
+        "intro": "Hand-drawn prints on heavyweight cotton tees. Sizes XS to XXL, secure checkout via Shopify."
       }
     }
   },
-  "order": [
-    "hero",
-    "grid"
-  ]
+  "order": ["hero", "marquee", "grid"]
 }
