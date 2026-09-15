@@ -1,0 +1,21 @@
+{% comment %} DCWR marquee — mirrors the website benefits bar. {% endcomment %}
+{%- assign items = section.settings.items | split: ',' -%}
+<div class="dcwr-marquee">
+  <div class="dcwr-marquee__track">
+    {%- for i in (1..4) -%}
+      {%- for item in items -%}
+        <span class="dcwr-marquee__item dcwr-label">{{ item | strip }}<span class="dcwr-marquee__dot"></span></span>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DCWR marquee",
+  "settings": [
+    { "type": "text", "id": "items", "label": "Items (comma separated)", "default": "Heavyweight cotton, Designed in the Netherlands, Free shipping over €50, 14-day returns, Limited drops" }
+  ],
+  "presets": [{ "name": "DCWR marquee" }]
+}
+{% endschema %}
