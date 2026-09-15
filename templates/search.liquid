@@ -1,4 +1,28 @@
-<div class="dcwr-container" style="padding:4rem 1.25rem;">
-  <h1>Search</h1>
-  {% for item in search.results %}<p><a href="{{ item.url }}">{{ item.title }}</a></p>{% endfor %}
+<div class="dcwr-page">
+  <div class="dcwr-container">
+    <h1 class="dcwr-page__title">Search</h1>
+    <form action="{{ routes.search_url }}" method="get" style="margin-top:1.5rem;max-width:28rem;">
+      <input class="dcwr-field" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search T-shirts">
+    </form>
+
+    {% if search.performed %}
+      <div class="dcwr-grid">
+        {%- for item in search.results -%}
+          <article class="dcwr-card">
+            <a class="dcwr-card__media" href="{{ item.url }}">
+              {% if item.featured_image %}
+                {{ item.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'dcwr-card__main', alt: item.title }}
+              {% endif %}
+            </a>
+            <div class="dcwr-card__body">
+              <h2 class="dcwr-card__title"><a class="dcwr-rule" href="{{ item.url }}">{{ item.title }}</a></h2>
+              {% if item.price %}<p class="dcwr-card__price">{{ item.price | money }}</p>{% endif %}
+            </div>
+          </article>
+        {%- else -%}
+          <p class="dcwr-muted">Nothing found for "{{ search.terms }}".</p>
+        {%- endfor -%}
+      </div>
+    {% endif %}
+  </div>
 </div>
