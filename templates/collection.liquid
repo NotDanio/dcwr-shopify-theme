@@ -1,0 +1,20 @@
+<section class="dcwr-grid-section">
+  <div class="dcwr-container">
+    <h1 class="dcwr-grid-section__title">{{ collection.title }}</h1>
+    <div class="dcwr-grid">
+      {% for product in collection.products %}
+        <a class="dcwr-card" href="{{ product.url }}">
+          <div class="dcwr-card__media">
+            {% if product.featured_image %}
+              {{ product.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: product.title }}
+            {% endif %}
+          </div>
+          <div class="dcwr-card__body">
+            <h3 class="dcwr-card__title">{{ product.title }}</h3>
+            <span class="dcwr-card__price">{{ product.price | money }}</span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

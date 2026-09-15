@@ -1,0 +1,8 @@
+<section class="dcwr-grid-section">
+  <div class="dcwr-container">
+    <h1 class="dcwr-grid-section__title">{{ blog.title }}</h1>
+    {% for article in blog.articles %}
+      <p><a href="{{ article.url }}">{{ article.title }}</a></p>
+    {% endfor %}
+  </div>
+</section>
