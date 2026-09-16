@@ -3,7 +3,7 @@
   {% if section.settings.image != blank %}
     {{ section.settings.image | image_url: width: 2400 | image_tag: loading: 'eager', class: 'dcwr-hero__image', alt: section.settings.image_alt, width: 2400 }}
   {% else %}
-    <img class="dcwr-hero__image" src="{{ 'dcwr-hero.jpg' | asset_url }}" alt="{{ section.settings.image_alt }}" width="1264" height="848">
+    <img class="dcwr-hero__image" src="{{ 'dcwr-hero.jpg' | asset_url }}" alt="{{ section.settings.image_alt }}" width="1264" height="848" loading="eager">
   {% endif %}
   <div class="dcwr-hero__overlay"></div>
 
